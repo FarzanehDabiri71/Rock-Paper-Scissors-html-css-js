@@ -7,41 +7,36 @@ paper.addEventListener("click", () => playGame("paper"));
 const scissors = document.querySelector(".scissors-button");
 scissors.addEventListener("click", () => playGame("scissors"));
 
-function playGame(userPick) {
-  let computerMovePick = "";
-  let computerMove = Math.random();
-  if (computerMove <= 1 / 3) {
-    computerMovePick = "rock";
-    if (userPick === "rock") {
-      console.log("tie", computerMove, computerMovePick, userPick);
-    }
-    if (userPick === "paper") {
-      console.log("win", computerMove, computerMovePick, userPick);
-    }
-    if (userPick === "scissors") {
-      console.log("lose", computerMove, computerMovePick, userPick);
-    }
-  } else if (computerMove <= 2 / 3) {
-    computerMovePick = "paper";
-    if (userPick === "rock") {
-      console.log("lose", computerMove, computerMovePick, userPick);
-    }
-    if (userPick === "paper") {
-      console.log("tie", computerMove, computerMovePick, userPick);
-    }
-    if (userPick === "scissors") {
-      console.log("win", computerMove, computerMovePick, userPick);
-    }
-  } else {
-    computerMovePick = "scissors";
-    if (userPick === "rock") {
-      console.log("win", computerMove, computerMovePick, userPick);
-    }
-    if (userPick === "paper") {
-      console.log("lose", computerMove, computerMovePick, userPick);
-    }
-    if (userPick === "scissors") {
-      console.log("tie", computerMove, computerMovePick, userPick);
-    }
+// Function to get the computer's choice
+function getComputerChoice() {
+  const choices = ["rock", "paper", "scissors"];
+  const randomIndex = Math.floor(Math.random() * choices.length);
+  return choices[randomIndex];
+}
+
+// Game results
+let gameResult = {
+  WIN: "You Win.",
+  LOSE: "YOu Lose.",
+  TIE: "It's a Tie.",
+};
+
+// Function to determine the winner
+function determineWinner(userSelection) {
+  const computerSelection = getComputerChoice();
+  if (computerSelection === userSelection) return gameResult.TIE;
+  if (
+    (computerSelection === "rock" && userSelection === "paper") ||
+    (computerSelection === "paper" && userSelection === "scissors") ||
+    (computerSelection === "scissors" && userSelection === "rock")
+  ) {
+    return gameResult.WIN;
   }
+  return gameResult.LOSE;
+}
+
+// Function to display the result
+function playGame(userSelection) {
+  const gameResult = determineWinner(userSelection);
+  document.querySelector(".result").innerHTML = gameResult;
 }
