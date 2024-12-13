@@ -1,0 +1,7 @@
+{
+  "liveServer.settings.port": 5501,
+  "javascript.suggest.autoImports": true,
+  "javascript.suggest.completeJSDocs": true,
+  "javascript.suggest.completeFunctionCalls": true,
+  "json.schemas": []
+}
