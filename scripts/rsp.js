@@ -7,6 +7,8 @@ paper.addEventListener("click", () => playGame("paper"));
 const scissors = document.querySelector(".scissors-button");
 scissors.addEventListener("click", () => playGame("scissors"));
 
+const reset = document.querySelector(".reset-button");
+reset.addEventListener("click", resetGame);
 // Function to get the computer's choice
 function getComputerChoice() {
   const choices = ["rock", "paper", "scissors"];
@@ -23,10 +25,9 @@ let gameResult = JSON.parse(localStorage.getItem("gameResult")) || {
 
 function updateResultUI() {
   document.querySelector(".result").innerHTML = `
-    
-<p>Wins: ${gameResult.WIN}, 
-Losses: ${gameResult.LOSE}, 
-Ties: ${gameResult.TIE}</p>
+      <p>Wins: ${gameResult.WIN}, 
+      Losses: ${gameResult.LOSE}, 
+      Ties: ${gameResult.TIE}</p>
 `;
 }
 // Function to determine the winner
@@ -52,3 +53,20 @@ function playGame(userSelection) {
   updateResultUI();
 }
 updateResultUI();
+
+function resetGame() {
+  localStorage.setItem(
+    "gameResult",
+    JSON.stringify({
+      WIN: 0,
+      LOSE: 0,
+      TIE: 0,
+    })
+  );
+  gameResult = {
+    WIN: 0,
+    LOSE: 0,
+    TIE: 0,
+  };
+  updateResultUI();
+}
