@@ -23,7 +23,7 @@ body {
   cursor: pointer;
 }
 
-.result {
+.results {
   font-size: 25px;
   font-weight: bold;
   margin-top: 50px;
@@ -33,8 +33,7 @@ body {
   margin-top: 60px;
 }
 
-.reset-score-button,
-.auto-play-button {
+.reset-button {
   background-color: white;
   border: none;
   font-size: 15px;
